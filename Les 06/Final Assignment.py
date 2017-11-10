@@ -8,39 +8,27 @@ def toon_aantal_kluizen_vrij():
 
 
 def nieuwe_kluis():
+    nummers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     infile = open('kluizen.txt', 'r')
     kluizendata = infile.readlines()
-    infile.close()
-    list = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
     for regel in kluizendata:
-        gegevensvan1kluis = regel.split(';')
-        stringkluisnummer = int(gegevensvan1kluis[0])
-        print(stringkluisnummer)
-        if stringkluisnummer in list:
-            print('if')
-            list.remove(stringkluisnummer)
-            print(list)
+        regelsplitsen = regel.split(';')
+        kluisnummer = int(regelsplitsen[0])
+        if kluisnummer in nummers:
+            nummers.remove(kluisnummer)
 
-
-
-#if len(list) > 0:
- #   outfile = open('')
-  #  code = input('Voer uw code in: ')
-   # if len(code) >=4:
-    #    print('Uw kluisnummer is {}'.format(list[0]))
-     #   infile.open('kluizen.txt', 'a')
-
-
-
-#        else:
-#            print('Uw code is niet geldig, voer een nieuwe code in.')
-
-
-
-    if len(list) == 0:
-        print('Er zijn helaas geen kluizen meer beschikbaar.')
-
-
+    if len(nummers) != 0:
+        wachtwoord = input('Voer een wachtwoord in: ')
+        if len(wachtwoord) < 4:
+            print('Het wachtwoord moet minimaal 4 tekens lang zijn.')
+        else:
+            outfile = open('kluizen.txt', 'a')
+            outfile.write('{};{}\n'.format(nummers[0], wachtwoord))
+            print('Uw kluisnummer: {}'.format(nummers[0]))
+            outfile.close()
+    else:
+        print('Alle kluizen zijn bezet.')
+    infile.close()
 
 def kluis_openen():
     infile = open('kluizen.txt', 'r')
@@ -59,14 +47,6 @@ def kluis_openen():
         print('De gegevens zijn correct.')
     else:
         print('De gegevens zijn niet correct.')
-
-
-
-
-
-
-
-
 
 
 print('1: Ik wil weten hoeveel kluizen nog vrij zijn')

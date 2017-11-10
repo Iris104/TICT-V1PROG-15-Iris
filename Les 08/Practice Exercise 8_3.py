@@ -1,6 +1,6 @@
 def code(invoerstring):
     asc = ord(invoerstring)
-    for asc:
+    for asc in invoerstring:
         asc += 3
         chr(asc)
     print(asc)
